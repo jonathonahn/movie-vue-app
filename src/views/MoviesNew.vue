@@ -5,7 +5,10 @@
     <br />
     Year (optional): <input type="text" v-model="newMovieParams.year" />
     <br />
-    Plot (optional): <input type="text" v-model="newMovieParams.plot" />
+    Plot (optional): <input type="text" v-model="newMovieParams.plot" /><span
+      v-if="newMovieParams.plot.length > 0"
+      >Character limit: {{ 30000 - newMovieParams.plot.length }}</span
+    >
     <br />
     <button v-on:click="createMovie()">Submit</button>
     <br />
@@ -18,7 +21,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      newMovieParams: {},
+      newMovieParams: { plot: "" },
       errors: [],
     };
   },
