@@ -1,16 +1,31 @@
 <template>
   <div class="movies-new">
     <!-- aasdf -->
-    Title (required): <input type="text" v-model="newMovieParams.title" />
-    <br />
-    Year (optional): <input type="text" v-model="newMovieParams.year" />
-    <br />
-    Plot (optional): <input type="text" v-model="newMovieParams.plot" /><span
-      v-if="newMovieParams.plot.length > 0"
-      >Character limit: {{ 30000 - newMovieParams.plot.length }}</span
-    >
-    <br />
-    <button v-on:click="createMovie()">Submit</button>
+    <form action="http://localhost:3000/movies" target="_blank" method="post">
+      <label for="title"> Title (required): </label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        v-model="newMovieParams.title"
+      />
+      <br />
+      <label for="year"> Year (optional): </label>
+      <input id="year" type="text" name="year" v-model="newMovieParams.year" />
+      <br />
+      <label for="plot"> Plot (optional): </label
+      ><textarea
+        id="plot"
+        type="text"
+        name="plot"
+        v-model="newMovieParams.plot"
+      /><span v-if="newMovieParams.plot.length > 0"
+        >Character limit: {{ 30000 - newMovieParams.plot.length }}</span
+      >
+      <br />
+      <button v-on:click="createMovie()">Submit</button>
+      <input type="submit" value="Post and View Data" />
+    </form>
     <br />
     <p v-if="!(errors.length === 0)">{{ errors }}</p>
   </div>
@@ -42,6 +57,11 @@ export default {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
+    },
+    clearFields: function () {
+      this.newMovieParams.title = "";
+      this.newMovieParams.year = null;
+      this.newMovieParams.plot = "";
     },
   },
 };
