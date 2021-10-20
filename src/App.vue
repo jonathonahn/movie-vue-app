@@ -1,20 +1,79 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <span v-if="!isLoggedIn()"
-        ><router-link to="/signup">Sign Up</router-link> |
-      </span>
-      <span v-if="!isLoggedIn()">
-        <router-link v-if="!isLoggedIn()" to="/login">Login</router-link>
-      </span>
-      <span v-if="isLoggedIn()">
-        <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link>
-      </span>
-      <br />
-      <router-link to="/movies">Movies</router-link> |
-      <router-link to="/moviesnew">New Movie</router-link>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">amc gang</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <router-link class="nav-link" to="/">Home</router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" to="/about">About</router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" v-if="!isLoggedIn()" to="/signup"
+                  >Sign Up</router-link
+                >
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" v-if="!isLoggedIn()" to="/login"
+                  >Login</router-link
+                >
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" v-if="isLoggedIn()" to="/logout"
+                  >Logout</router-link
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Movies
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <router-link class="dropdown-item" to="/movies"
+                      >Movies</router-link
+                    >
+                  </li>
+                  <li>
+                    <router-link class="dropdown-item" to="/moviesnew"
+                      >New Movie</router-link
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
     <router-view />
   </div>

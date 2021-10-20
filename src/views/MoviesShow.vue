@@ -1,10 +1,12 @@
 <template>
   <div class="movies-show">
-    <h1>{{ message }}</h1>
-    <h2>this is the movie:</h2>
-    <div>{{ movie.title }}</div>
+    <h1>{{ movie.title }}</h1>
     <p>{{ movie.year }}</p>
     <p>{{ movie.plot }}</p>
+    <h5>Actors:</h5>
+    <p v-for="actor in movie.actors" v-bind:key="actor.id">
+      {{ actor.first_name }} {{ actor.last_name }}
+    </p>
     <br />
     <router-link :to="`/movies/${movie.id}/edit`">Edit</router-link>
   </div>
